@@ -17,8 +17,8 @@
     <main class=''>
         <nav class="user-nav">
             <span>Você não criou nenhum quizz ainda :(</span>
-            <button>Criar Quizz</button>
-            <p>Seus Quizzes</p><ion-icon name="add-circle"></ion-icon>
+            <button onclick="creationPage();">Criar Quizz</button>
+            <p>Seus Quizzes</p><ion-icon name="add-circle" onclick="creationPage();"></ion-icon>
             <ul class="user-list">
                 <li>
                     <img src="./assets/imgs/original_1628718691_los-simpson---star_-_3_e73a2761.png" alt="">
@@ -49,6 +49,29 @@
             </ul>
         </nav>
     </main>
+
+    <section class="creation hide">
+        <div class="first">
+            <p>Comece pelo começo</p>
+            <form action="">
+                <input type="text" required placeholder="Título do seu quizz" class="creation--title">
+                <input type="text" required placeholder="URL da imagem do seu quizz" class="creation--img">
+                <input type="text" required placeholder="Quantidade de perguntas do quizz" class="creation--qnum">
+                <input type="text" required placeholder="Quantidade de níveis do quizz" class="creation--lvls">
+            </form>
+            <button onclick="validateInput();">Prosseguir pra criar perguntas</button>
+        </div>
+        <div class="second hide">
+            <p>Comece pelo começo</p>
+            <form action="">
+                <input type="text" required placeholder="Título do seu quizz" >
+                <input type="text" required placeholder="URL da imagem do seu quizz" >
+                <input type="text" required placeholder="Quantidade de perguntas do quizz" >
+                <input type="text" required placeholder="Quantidade de níveis do quizz" >
+            </form>
+            <button>Prosseguir pra criar perguntas</button>
+        </div>
+    </section>
 
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
