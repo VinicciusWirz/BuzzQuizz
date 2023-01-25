@@ -14,11 +14,13 @@
     <header>
         <h1>Buzzquizz</h1>
     </header>
-    <main>
+
+<!-- INICIO DA PAGINA MAIN-->
+    <main class=''>
         <nav class="user-nav">
             <span>Você não criou nenhum quizz ainda :(</span>
-            <button>Criar Quizz</button>
-            <p>Seus Quizzes</p><ion-icon name="add-circle"></ion-icon>
+            <button onclick="creationPage();">Criar Quizz</button>
+            <p>Seus Quizzes</p><ion-icon name="add-circle" onclick="creationPage();"></ion-icon>
             <ul class="user-list">
                 <li>
                     <img src="./assets/imgs/original_1628718691_los-simpson---star_-_3_e73a2761.png" alt="">
@@ -45,34 +47,13 @@
         <nav class="quizz">
             <p>Todos os Quizzes</p>
             <ul>
-                <li>
-                    <img src="./assets/imgs/original_1628718691_los-simpson---star_-_3_e73a2761.png" alt="">
-                    <span>Acerte os personagens corretos dos Simpsons e prove seu amor!</span>
-                </li>
-                <li>
-                    <img src="./assets/imgs/original_1628718691_los-simpson---star_-_3_e73a2761.png" alt="">
-                    <span>Acerte os personagens corretos dos Simpsons e prove seu amor!</span>
-                </li>
-                <li>
-                    <img src="./assets/imgs/original_1628718691_los-simpson---star_-_3_e73a2761.png" alt="">
-                    <span>Acerte os personagens corretos dos Simpsons e prove seu amor!</span>
-                </li>
-                <li>
-                    <img src="./assets/imgs/original_1628718691_los-simpson---star_-_3_e73a2761.png" alt="">
-                    <span>Acerte os personagens corretos dos Simpsons e prove seu amor!</span>
-                </li>
-                <li>
-                    <img src="./assets/imgs/original_1628718691_los-simpson---star_-_3_e73a2761.png" alt="">
-                    <span>Acerte os personagens corretos dos Simpsons e prove seu amor!</span>
-                </li>
-                <li>
-                    <img src="./assets/imgs/original_1628718691_los-simpson---star_-_3_e73a2761.png" alt="">
-                    <span>Acerte os personagens corretos dos Simpsons e prove seu amor!</span>
-                </li>
+                <img src="./assets/imgs/Interwind-1s-200px.gif" alt="" class="loading">
             </ul>
         </nav>
     </main>
+<!-- FIM DA PAGINA MAIN-->
 
+<!-- INICIO DA PAGINA PARA RESPONDER O QUIZZ-->
     <div class="quizz-page">
         <div class="banner">
             <img src="./assets/imgs/original_1628718691_los-simpson---star_-_3_e73a2761.png" alt="">
@@ -142,6 +123,32 @@
             Voltar pra home
         </button>
     </div>
+<!-- FIM DA PAGINA PARA RESPONDER O QUIZZ-->
+
+<!-- INICIO DA PAGINA PARA CRIAR O QUIZZ-->
+    <section class="creation hide">
+        <div class="first">
+            <p>Comece pelo começo</p>
+            <form action="">
+                <input type="text" required placeholder="Título do seu quizz" class="creation--title">
+                <input type="text" required placeholder="URL da imagem do seu quizz" class="creation--img">
+                <input type="text" required placeholder="Quantidade de perguntas do quizz" class="creation--qnum">
+                <input type="text" required placeholder="Quantidade de níveis do quizz" class="creation--lvls">
+            </form>
+            <button onclick="validateInput();">Prosseguir pra criar perguntas</button>
+        </div>
+        <div class="second hide">
+            <p>Comece pelo começo</p>
+            <form action="">
+                <input type="text" required placeholder="Título do seu quizz" >
+                <input type="text" required placeholder="URL da imagem do seu quizz" >
+                <input type="text" required placeholder="Quantidade de perguntas do quizz" >
+                <input type="text" required placeholder="Quantidade de níveis do quizz" >
+            </form>
+            <button>Prosseguir pra criar perguntas</button>
+        </div>
+    </section>
+<!-- FIM DA PAGINA PARA CRIAR O QUIZZ-->
 
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
