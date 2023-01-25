@@ -27,55 +27,45 @@ function validateInput() {
     const gameImage = document.querySelector('.creation--img');
     const gameQuestionNums = document.querySelector('.creation--qnum');
     const gameLevelNums = document.querySelector('.creation--lvls');
-    console.log(gameTitle.value.length)
     const passCheck = [];
-    const erroInfo = []
     if (gameTitle.value.length < 20 || gameTitle.value.length > 66) {
-        gameTitle.classList.add('validation-error');
-        erroInfo.push('O título deve ter entre 20 e 65 caracteres')
+        gameTitle.parentElement.classList.add('validation-error');
     } else {
         passCheck.push('1');
-        if (gameTitle.classList.contains('validation-error')) {
-            gameTitle.classList.remove('validation-error');
+        if (gameTitle.parentElement.classList.contains('validation-error')) {
+            gameTitle.parentElement.classList.remove('validation-error');
         }
     }
     if (!gameImage.value.includes('https://')) {
-        gameImage.classList.add('validation-error');
-        erroInfo.push('A imagem deve ser uma url em https://')
+        gameImage.parentElement.classList.add('validation-error');
     } else {
         passCheck.push('2');
-        if (gameImage.classList.contains('validation-error')) {
-            gameImage.classList.remove('validation-error');
+        if (gameImage.parentElement.classList.contains('validation-error')) {
+            gameImage.parentElement.classList.remove('validation-error');
         }
     }
     if (gameQuestionNums.value < 3) {
-        gameQuestionNums.classList.add('validation-error');
-        erroInfo.push('Faça um mínimo de 3 perguntas');
+        gameQuestionNums.parentElement.classList.add('validation-error');
     } else {
         passCheck.push('3');
-        if (gameQuestionNums.classList.contains('validation-error')) {
-            gameQuestionNums.classList.remove('validation-error');
+        if (gameQuestionNums.parentElement.classList.contains('validation-error')) {
+            gameQuestionNums.parentElement.classList.remove('validation-error');
         }
     }
     if (gameLevelNums.value < 2) {
-        gameLevelNums.classList.add('validation-error');
-        erroInfo.push('Faça pelo menos 2 niveis de resultado');
+        gameLevelNums.parentElement.classList.add('validation-error');
     } else {
         passCheck.push('4');
-        if (gameLevelNums.classList.contains('validation-error')) {
-            gameLevelNums.classList.remove('validation-error');
+        if (gameLevelNums.parentElement.classList.contains('validation-error')) {
+            gameLevelNums.parentElement.classList.remove('validation-error');
         }
     }
-    inputChecks(passCheck, erroInfo);
+    inputChecks(passCheck);
 }
 
-function inputChecks(passCheck, erroInfo){
+function inputChecks(passCheck){
     if (passCheck.length === 4) {
         console.log('all pass');
         //execute command to show next step;
-    } else {
-        for(let i = 0; i < erroInfo.length; i++){
-            alert(`Preencha os campos corretamente: ${erroInfo[i]}`);
-        }
     }
 }

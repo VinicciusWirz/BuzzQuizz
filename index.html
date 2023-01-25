@@ -53,23 +53,24 @@
     <section class="creation hide">
         <div class="first">
             <p>Comece pelo começo</p>
-            <form action="">
-                <input type="text" required placeholder="Título do seu quizz" class="creation--title">
-                <input type="text" required placeholder="URL da imagem do seu quizz" class="creation--img">
-                <input type="text" required placeholder="Quantidade de perguntas do quizz" class="creation--qnum">
-                <input type="text" required placeholder="Quantidade de níveis do quizz" class="creation--lvls">
+            <form>
+                <div>
+                    <input type="text" required placeholder="Título do seu quizz" class="creation--title">
+                    <span class="erro-description">O título deve ter entre 20 e 65 caracteres</span>
+                </div>
+                <div>
+                    <input type="text" required placeholder="URL da imagem do seu quizz" class="creation--img">
+                    <span class="erro-description">O valor informado não é uma URL válida</span>
+                </div>
+                <div>
+                    <input type="number" required placeholder="Quantidade de perguntas do quizz" class="creation--qnum">
+                    <span class="erro-description">O quizz deve ter no mínimo 3 perguntas</span>
+                </div>
+                <div><input type="number" required placeholder="Quantidade de níveis do quizz" class="creation--lvls">
+                    <span class="erro-description">O quizz deve ter no mínimo 2 níveis</span>
+                </div>
             </form>
             <button onclick="validateInput();">Prosseguir pra criar perguntas</button>
-        </div>
-        <div class="second hide">
-            <p>Comece pelo começo</p>
-            <form action="">
-                <input type="text" required placeholder="Título do seu quizz" >
-                <input type="text" required placeholder="URL da imagem do seu quizz" >
-                <input type="text" required placeholder="Quantidade de perguntas do quizz" >
-                <input type="text" required placeholder="Quantidade de níveis do quizz" >
-            </form>
-            <button>Prosseguir pra criar perguntas</button>
         </div>
     </section>
 

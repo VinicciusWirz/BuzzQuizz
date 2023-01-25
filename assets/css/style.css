@@ -243,16 +243,21 @@ section,
     align-items: center;
     justify-content: center;
     width: 600px;
-    height: 256px;
+    padding: 21px 0;
     background: #FFFFFF;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
 }
 
-.creation>div>form>input:not(:last-child) {
+.creation>div>form>div {
+    display: flex;
+    flex-direction: column;
+}
+
+.creation>div>form>div:not(:last-child) {
     margin-bottom: 9px;
 }
 
-.creation>div>form>input {
+.creation>div>form>div>input {
     width: 564px;
     height: 46px;
     padding: 0 0 0 20px;
@@ -286,10 +291,23 @@ section,
     margin-top: 80px;
 }
 
-.creation>div>form>.validation-error{
-    background-color: #ec372d3f;
+.creation>div>form>.validation-error>input {
+    background-color: #FFE9E9;
 }
 
+.erro-description {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #EC362D;
+    align-self: flex-start;
+    display: none;
+}
+
+.validation-error>.erro-description {
+    display: initial;
+}
 
 .hide {
     display: none !important;
@@ -344,4 +362,25 @@ section,
         margin-bottom: 36px;
     }
 
+}
+
+@media (max-width:600px) {
+    .creation>div>form {
+        width: 100vw;
+    }
+
+    .creation>div>form>div,
+    .creation>div>form>div>input {
+        width: 100%;
+    }
+
+    .creation>div>button {
+        width: 324px ;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 21px;
+        text-align: center;
+        color: #FFF5F4;
+    }
 }
