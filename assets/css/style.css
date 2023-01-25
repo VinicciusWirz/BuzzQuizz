@@ -204,6 +204,22 @@ main {
     font-size: 19px;
     line-height: 22px;
     color: #FFFFFF;
+    width: 100%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.quizz .loading {
+    width: 250px;
+    height: 250px;
+    position: initial;
+    margin: auto;
+    object-fit: none;
+}
+
+.hide {
+    display: none;
 }
 
 @media (max-width: 1051px) {
