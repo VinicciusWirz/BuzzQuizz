@@ -405,6 +405,8 @@ section,
 
 .answer span {
     width: 330px;
+    word-break:break-word;
+    text-overflow: ellipsis;
     font-style: normal;
     font-weight: 700;
     font-size: 20px;
@@ -457,6 +459,7 @@ section,
     line-height: 25px;
     color: #484848;
     word-break: break-word;
+    text-overflow: ellipsis;
 
 }
 
@@ -505,6 +508,11 @@ section,
 .create-quiz-questions {
     display: flex;
     align-items: center;
+    flex-direction: column;
+}
+
+.final{
+    display:flex;
     flex-direction: column;
 }
 

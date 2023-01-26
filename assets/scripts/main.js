@@ -170,12 +170,13 @@ function smoothMove(lastId){
 }
 
 function calculateResults(points, numQuestions){
+    document.querySelector('.quizz-result').classList.remove('hide');
+    document.querySelector('.final').classList.remove('hide');
     let score = Math.floor((points/numQuestions)*100);
     console.log(levelsRef);
     for (let i = (levelsRef.length-1); i >= 0; i--){
         if(score >= levelsRef[i].minValue){
-            document.querySelector('.question-feed').innerHTML +=`
-            <div class="quizz-result">
+            document.querySelector('.quizz-result').innerHTML =`
                 <div class="result-title">
                     <span>${score}% de acerto: ${levelsRef[i].title}</span>
                 </div>
@@ -183,7 +184,6 @@ function calculateResults(points, numQuestions){
                     <img src=${levelsRef[i].image} alt="">
                     <span>${levelsRef[i].text}</span>
                 </div>
-            </div>
             `;
             document.querySelector('.quizz-result').scrollIntoView({behavior:'smooth', block: "center",});
             return;
@@ -191,19 +191,25 @@ function calculateResults(points, numQuestions){
     } 
 }
 
+function restartQuizz(){
+   
+    let restartQuestions = document.querySelectorAll('.answer-box');
+    for (let i = 0; i < restartQuestions.length; i++){
+        restartQuestions[i].classList.remove("answered");
+        restartQuestions[i].querySelector('.selection').classList.remove("selection");
+    }
+    points = 0;
+    questionsRef = 0;
+    document.querySelector('.quizz-result').classList.add('hide');
+    document.querySelector('.final').classList.add('hide');
+    document.querySelector('.quizz-page').scrollIntoView({behavior:'smooth', block:"start",});
+    
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
+function goHome(){
+    document.querySelector('.quizz-page').classList.add('hide');
+    window.location.reload();
+}
 
 function createQuizQuestions(passCheck) {
     document.querySelector('.creation>.first').classList.add('hide');
