@@ -484,6 +484,23 @@ section,
     margin-bottom: 85px;
 }
 
+.answered>div{
+    opacity:0.3;
+}
+
+.answered>.seletecion{
+    opacity:1;
+}
+
+.answered .v{
+    color: #009C22;
+}
+
+.answered .f{
+    color: #FF4B4B;
+    ;
+}
+
 @media (max-width: 1051px) {
     main {
         padding: 0px 20px;
