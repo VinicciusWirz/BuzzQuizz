@@ -501,6 +501,12 @@ section,
     ;
 }
 
+.create-quiz-questions {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
 @media (max-width: 1051px) {
     main {
         padding: 0px 20px;

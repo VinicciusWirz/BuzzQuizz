@@ -1,6 +1,12 @@
 let loadedQuizzes = [];
 let points = 0;
 const uri = 'https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/';
+let form = {
+    title: null,
+    image: null,
+    questions: [],
+    levels: []
+}
 getQuizz();
 function getQuizz() {
     loadedQuizzes = [];
@@ -151,3 +157,68 @@ function smoothMove(lastId){
     }
     document.getElementById(`data${Number(lastId)+1}`).parentElement.scrollIntoView({behavior:'smooth', block: "center",})
 }
+
+
+function createQuizQuestions(passCheck) {
+    document.querySelector('.creation>.first').classList.add('hide');
+    const pageCreation = document.querySelector('.creation>.second');
+    pageCreation.classList.remove('hide');
+    
+    pageCreation.innerHTML += `
+    <div class='create-quiz-questions'>
+      <h1>Crie suas perguntas</h1>
+      <ul></ul>
+    </div>
+    `;
+    
+    for(let i = 0; i < 3; i++) {
+      const list = document.querySelector('.create-quiz-questions>ul');
+      
+      list.innerHTML += `
+          <li>
+            <p>Pergunta ${i + 1}</p>
+            <form class='questions-form-${i+1}'>
+            <input class='question-title' value='xxxx' required/>
+              <input class='color-title' required/>
+              <p>Resposta Correta</p>
+              <input class='correct-answer' required/>
+              <input class='correct-img-answer' required type='url'/>
+              <p>Resposta incorretas</p>
+              <input class='wrong-answer1' required/>
+              <input class='wrong-img-answer2' required type='url'/>
+              <br>
+              <input class='wrong-answer3' />
+              <input class='wrong-img-answer3' type='url' />
+              <br>
+              <input class='wrong-answer4' />
+              <input class='wrong-img-answer4' type='url' />
+            </form>
+          </li>
+        `;
+  
+        const questionTitle = document.querySelector(`.questions-form-${i+1}>.question-title`).value;
+        const colorTitle = document.querySelector(`.questions-form-${i+1}>.color-title`).value;
+        const correctAnswer = document.querySelector(`.questions-form-${i+1}>.correct-answer`).value;
+        const correctImg = document.querySelector(`.questions-form-${i+1}>.correct-img-answer`).value;
+        const wrongAnswer1 = document.querySelector(`.questions-form-${i+1}>.wrong-answer1`).value;
+        const wrongImg1 = document.querySelector(`.questions-form-${i+1}>.wrong-img-answer1`).value;
+        const wrongAnswer2 = document.querySelector(`.questions-form-${i+1}>.wrong-answer2`).value;
+        const wrongImg2 = document.querySelector(`.questions-form-${i+1}>.wrong-img-answer2`).value;
+        const wrongAnswer3 = document.querySelector(`.questions-form-${i+1}>.wrong-answer3`).value;
+        const wrongImg3 = document.querySelector(`.questions-form-${i+1}>.wrong-img-answer3`).value;
+  
+        
+      }
+      
+      
+  
+    pageCreation.innerHTML += `
+      <button onclick="checkQuestions()">Prosseguir para criar niveis</button>
+    `;
+  
+  }
+  createQuizQuestions();
+  
+  function checkQuestions() {
+    
+  }
