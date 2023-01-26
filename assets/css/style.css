@@ -404,6 +404,7 @@ section,
 }
 
 .answer span {
+    width: 330px;
     font-style: normal;
     font-weight: 700;
     font-size: 20px;
@@ -488,7 +489,7 @@ section,
     opacity:0.3;
 }
 
-.answered>.seletecion{
+.answered>.selection{
     opacity:1;
 }
 

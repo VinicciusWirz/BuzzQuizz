@@ -1,13 +1,18 @@
-let loadedQuizzes = [];
-let points = 0;
 const uri = 'https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/';
+let loadedQuizzes = [];
+let numQuestions = 0;
+let questionsRef = 0;
+let points = 0;
+let levelsRef = [];
 let form = {
     title: null,
     image: null,
     questions: [],
     levels: []
 }
+
 getQuizz();
+
 function getQuizz() {
     loadedQuizzes = [];
     const promise = axios.get(uri)
@@ -86,13 +91,17 @@ function chooseQuizz(id) {
 function renderQuizz(answer) {
     document.querySelector('main').classList.add('hide');
     document.querySelector('.quizz-page').classList.remove('hide');
+    document.querySelector('.quizz-page').scrollIntoView({behavior:'smooth', block: "start",});
 
     document.querySelector('.banner').innerHTML = `<img src="${answer.data.image}" alt="">
             <span>${answer.data.title}</span>`;
 
     document.querySelector('.question-feed').innerHTML = "";
 
-    for (let i = 0; i < answer.data.questions.length; i++) {
+    numQuestions = answer.data.questions.length;
+    levelsRef = answer.data.levels;
+
+    for (let i = 0; i < numQuestions; i++) {
         document.querySelector('.question-feed').innerHTML += `
             <div class="question-box">
                 <div class="question" style="background-color:${answer.data.questions[i].color};">
@@ -103,7 +112,7 @@ function renderQuizz(answer) {
     }
 
 
-    for (let j = 0; j < answer.data.questions.length; j++) {
+    for (let j = 0; j < numQuestions; j++) {
         const sortedAnswers = answer.data.questions[j].answers.sort(shuffle);
         for (let z = 0; z < sortedAnswers.length; z++) {
             if(sortedAnswers[z].isCorrectAnswer){
@@ -111,17 +120,13 @@ function renderQuizz(answer) {
                 <div class="answer" onclick="answerSelection(this, ${z});">
                     <img src="${sortedAnswers[z].image}" alt="">
                     <span class="v">${sortedAnswers[z].text}</span>
-                </div>
-            </div>
-        </div>`;
+                </div>`;
             } else {
                 document.getElementById(`data${j}`).innerHTML += `
                 <div class="answer" onclick="answerSelection(this, ${z});">
                     <img src="${sortedAnswers[z].image}" alt="">
                     <span class="f">${sortedAnswers[z].text}</span>
-                </div>
-            </div>
-        </div>`;
+                </div>`;
             }
         }
     }
@@ -135,8 +140,9 @@ function answerSelection(item, index) {
     if (item.parentElement.classList.contains('answered')) {
         return;
     } else {
+        questionsRef++;
         item.parentElement.classList.add('answered')
-        item.classList.add('seletecion')
+        item.classList.add('selection')
         const answerRefPos = item.parentElement.id.replace('data', '');
         console.log(answerRefPos)
         console.log(index)
@@ -146,6 +152,11 @@ function answerSelection(item, index) {
         setTimeout(() => {
             smoothMove(answerRefPos);
         }, 2000);
+        if(questionsRef === numQuestions){
+            setTimeout(() => {
+                calculateResults(points, numQuestions);
+            }, 2000);
+        }
     }
 }
 
@@ -157,6 +168,41 @@ function smoothMove(lastId){
     }
     document.getElementById(`data${Number(lastId)+1}`).parentElement.scrollIntoView({behavior:'smooth', block: "center",})
 }
+
+function calculateResults(points, numQuestions){
+    let score = Math.floor((points/numQuestions)*100);
+    console.log(levelsRef);
+    for (let i = (levelsRef.length-1); i >= 0; i--){
+        if(score >= levelsRef[i].minValue){
+            document.querySelector('.question-feed').innerHTML +=`
+            <div class="quizz-result">
+                <div class="result-title">
+                    <span>${score}% de acerto: ${levelsRef[i].title}</span>
+                </div>
+                <div class="result">
+                    <img src=${levelsRef[i].image} alt="">
+                    <span>${levelsRef[i].text}</span>
+                </div>
+            </div>
+            `;
+            document.querySelector('.quizz-result').scrollIntoView({behavior:'smooth', block: "center",});
+            return;
+        }
+    } 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 function createQuizQuestions(passCheck) {
