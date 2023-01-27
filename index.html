@@ -15,12 +15,14 @@
         <h1>Buzzquizz</h1>
     </header>
 
-<!-- INICIO DA PAGINA MAIN-->
+    <!-- INICIO DA PAGINA MAIN-->
     <main class=''>
         <nav class="user-nav">
             <span>Você não criou nenhum quizz ainda :(</span>
             <button onclick="creationPage();">Criar Quizz</button>
-            <p>Seus Quizzes</p><ion-icon name="add-circle" onclick="creationPage();"></ion-icon>
+            <div class="title">
+                <p>Seus Quizzes</p><ion-icon name="add-circle" onclick="creationPage();"></ion-icon>
+            </div>
             <ul class="user-list">
                 <li>
                     <img src="./assets/imgs/original_1628718691_los-simpson---star_-_3_e73a2761.png" alt="">
@@ -51,9 +53,9 @@
             </ul>
         </nav>
     </main>
-<!-- FIM DA PAGINA MAIN-->
+    <!-- FIM DA PAGINA MAIN-->
 
-<!-- INICIO DA PAGINA PARA RESPONDER O QUIZZ-->
+    <!-- INICIO DA PAGINA PARA RESPONDER O QUIZZ-->
     <div class="quizz-page hide">
         <div class="banner">
             <img src="./assets/imgs/original_1628718691_los-simpson---star_-_3_e73a2761.png" alt="">
@@ -112,7 +114,8 @@
                 </div>
                 <div class="result">
                     <img src="./assets/imgs/original_1628718691_los-simpson---star_-_3_e73a2761.png" alt="">
-                    <span>Parabéns Potterhead! Bem-vindx a Hogwarts, aproveite o loop infinito de comida e clique no botão abaixo para usar o vira-tempo e reiniciar este teste.</span>
+                    <span>Parabéns Potterhead! Bem-vindx a Hogwarts, aproveite o loop infinito de comida e clique no
+                        botão abaixo para usar o vira-tempo e reiniciar este teste.</span>
                 </div>
             </div>
         </div>
@@ -123,9 +126,9 @@
             Voltar pra home
         </button>
     </div>
-<!-- FIM DA PAGINA PARA RESPONDER O QUIZZ-->
+    <!-- FIM DA PAGINA PARA RESPONDER O QUIZZ-->
 
-<!-- INICIO DA PAGINA PARA CRIAR O QUIZZ-->
+    <!-- INICIO DA PAGINA PARA CRIAR O QUIZZ-->
     <section class="creation hide">
         <div class="first">
             <p>Comece pelo começo</p>
@@ -148,8 +151,11 @@
             </form>
             <button onclick="validateInput();">Prosseguir pra criar perguntas</button>
         </div>
+        <div class="second hide">
+
+        </div>
     </section>
-<!-- FIM DA PAGINA PARA CRIAR O QUIZZ-->
+    <!-- FIM DA PAGINA PARA CRIAR O QUIZZ-->
 
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>

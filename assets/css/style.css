@@ -99,11 +99,7 @@ main {
     display: none;
 }
 
-.user-nav>p {
-    display: none
-}
-
-.user-nav>ion-icon {
+.user-nav>.title {
     display: none;
 }
 
@@ -124,6 +120,10 @@ main {
 .user-nav.has-data>ul {
     display: flex;
 }
+.user-nav.has-data>.title {
+    display: flex;
+    align-items: center;
+}
 
 .user-nav.has-data>ul>li>span {
     max-width: 100%;
@@ -132,7 +132,7 @@ main {
     ;
 }
 
-.user-nav.has-data>p {
+.user-nav.has-data>.title>p {
     display: inline;
     font-style: normal;
     font-weight: 700;
@@ -142,7 +142,7 @@ main {
     margin: 0px 0px 12px;
 }
 
-.user-nav.has-data>ion-icon {
+.user-nav.has-data>.title>ion-icon {
     display: initial;
     color: #EC362D;
     font-size: 31px;
@@ -219,9 +219,13 @@ main {
     object-fit: none;
 }
 
+section {
+    margin-top: 69px;
+}
+
 section,
 .creation>div {
-    margin-top: 69px;
+
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -270,13 +274,6 @@ section,
     line-height: 22px;
 }
 
-.creation>div>form>input::placeholder {
-    font-style: italic;
-    font-weight: 400;
-    font-size: 19px;
-    line-height: 22px;
-    color: #BABABA;
-}
 
 .creation>div>button {
     width: 370px;
@@ -290,6 +287,14 @@ section,
     text-align: center;
     color: #FFF5F4;
     margin-top: 80px;
+}
+
+input::placeholder {
+    font-style: italic;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 22px;
+    color: #BABABA;
 }
 
 .creation>div>form>.validation-error>input {
@@ -424,12 +429,12 @@ section,
     background: #EC362D;
     margin-bottom: 18px;
 
-    display:flex;
+    display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.result-title span{
+.result-title span {
     font-style: normal;
     font-weight: 700;
     font-size: 23px;
@@ -439,17 +444,17 @@ section,
 
 .result {
     display: flex;
-    gap:21px;
+    gap: 21px;
 }
 
-.result img{
+.result img {
     width: 364px;
     height: 273px;
     object-fit: cover;
 }
 
-.result span{
-    width:328px;
+.result span {
+    width: 328px;
     font-style: normal;
     font-weight: 700;
     font-size: 19px;
@@ -459,7 +464,7 @@ section,
 
 }
 
-.restart-button, 
+.restart-button,
 .home-button {
     font-style: normal;
     font-weight: 400;
@@ -479,24 +484,24 @@ section,
 
 .home-button {
     color: #818181;
-    border:none;
+    border: none;
     background-color: transparent;
     margin-bottom: 85px;
 }
 
-.answered>div{
-    opacity:0.3;
+.answered>div {
+    opacity: 0.3;
 }
 
-.answered>.seletecion{
-    opacity:1;
+.answered>.seletecion {
+    opacity: 1;
 }
 
-.answered .v{
+.answered .v {
     color: #009C22;
 }
 
-.answered .f{
+.answered .f {
     color: #FF4B4B;
     ;
 }
@@ -507,74 +512,100 @@ section,
     flex-direction: column;
 }
 
-@media (max-width: 1051px) {
+@media (max-width: 1100px) {
     main {
-        padding: 0px 20px;
-    }
-
-    .user-nav,
-    .quizz>ul {
-        width: 100%;
-    }
-
-}
-
-@media (max-width: 720px) {
-    main {
+        padding-top: 38px;
         height: auto;
-        width: auto;
-        padding: 0 20px;
     }
 
-
-    .user-nav,
+    main nav,
     .quizz>ul {
-        justify-content: space-around;
-        width: 100%;
+        width: 340px;
     }
 
-    .user-nav.user-nav {
+    .user-nav {
+        width: 340px;
+    }
+
+    .user-nav.has-data {
         height: auto;
-        margin-top: 38px;
-        width: 100%;
-        padding: 33px 0px;
     }
 
-    .user-nav.user-nav.has-data>ul {
+    .user-nav>.title {
+    justify-content: space-between;
+    width: 100%;
+    }
+
+    .user-nav.has-data>ul {
         flex-direction: column;
         align-items: center;
-        width: 100vw;
+        height: auto;
     }
 
     .user-nav>ul>li {
-        min-width: 340px;
         margin-right: 0px;
     }
 
     .quizz>ul {
         height: auto;
-        margin-bottom: 36px;
     }
 
-}
+    .quizz>p {
+        margin-top: 35px;
+    }
 
-@media (max-width:600px) {
+    /* Creation quizz*/
+    .creation>div>p {
+        margin-top: 37px;
+    }
+
     .creation>div>form {
-        width: 100vw;
+        width: 375px;
     }
 
-    .creation>div>form>div,
+    .creation>div>form>div {
+        width: 100%;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
     .creation>div>form>div>input {
         width: 100%;
     }
 
     .creation>div>button {
-        width: 324px ;
+        width: 324px;
         font-style: normal;
         font-weight: 400;
         font-size: 18px;
         line-height: 21px;
         text-align: center;
         color: #FFF5F4;
+    }
+}
+
+@media (max-width: 375px) {
+
+    /* Creation quizz */
+    .creation>div>form {
+        width: 100vw;
+    }
+
+}
+
+@media (max-width: 340px) {
+    main nav,
+    .user-nav,
+    .quizz>ul,
+    .quizz>ul>li,
+    .user-nav.has-data>ul>li {
+        width: 100%;
+    }
+
+}
+
+@media (max-width: 324px) {
+    .creation>div>button {
+        width: 100%;
     }
 }
