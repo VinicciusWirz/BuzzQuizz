@@ -38,6 +38,12 @@ main {
 
 }
 
+main li,
+button,
+.answer {
+    cursor: pointer
+}
+
 .user-nav {
     border: 1px dashed #D5D5D5;
     border-radius: 5px;
@@ -409,6 +415,9 @@ input::placeholder {
 }
 
 .answer span {
+    width: 330px;
+    word-break: break-word;
+    text-overflow: ellipsis;
     font-style: normal;
     font-weight: 700;
     font-size: 20px;
@@ -461,6 +470,7 @@ input::placeholder {
     line-height: 25px;
     color: #484848;
     word-break: break-word;
+    text-overflow: ellipsis;
 
 }
 
@@ -493,7 +503,7 @@ input::placeholder {
     opacity: 0.3;
 }
 
-.answered>.seletecion {
+.answered>.selection {
     opacity: 1;
 }
 
@@ -509,6 +519,11 @@ input::placeholder {
 .create-quiz-questions {
     display: flex;
     align-items: center;
+    flex-direction: column;
+}
+
+.final {
+    display: flex;
     flex-direction: column;
 }
 
@@ -574,7 +589,7 @@ input::placeholder {
     }
 
     .creation>div>button {
-        width: 324px;
+        width: 324px ;
         font-style: normal;
         font-weight: 400;
         font-size: 18px;

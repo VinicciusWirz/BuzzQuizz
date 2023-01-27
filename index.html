@@ -12,7 +12,7 @@
 
 <body>
     <header>
-        <h1>Buzzquizz</h1>
+        <h1 onclick="goHome()">BuzzQuizz</h1>
     </header>
 
     <!-- INICIO DA PAGINA MAIN-->
@@ -62,69 +62,17 @@
             <span>Título do Quizz</span>
         </div>
         <div class="question-feed">
-            <div class="question-box">
-                <div class="question">
-                    <span>Pergunta</span>
-                </div>
-                <div class="answer-box">
-                    <div class="answer">
-                        <img src="./assets/imgs/original_1628718691_los-simpson---star_-_3_e73a2761.png" alt="">
-                        <span>Resposta</span>
-                    </div>
-                    <div class="answer">
-                        <img src="./assets/imgs/original_1628718691_los-simpson---star_-_3_e73a2761.png" alt="">
-                        <span>Resposta</span>
-                    </div>
-                    <div class="answer">
-                        <img src="./assets/imgs/original_1628718691_los-simpson---star_-_3_e73a2761.png" alt="">
-                        <span>Resposta</span>
-                    </div>
-                    <div class="answer">
-                        <img src="./assets/imgs/original_1628718691_los-simpson---star_-_3_e73a2761.png" alt="">
-                        <span>Resposta</span>
-                    </div>
-                </div>
-            </div>
-            <div class="question-box">
-                <div class="question">
-                    <span>Pergunta</span>
-                </div>
-                <div class="answer-box">
-                    <div class="answer">
-                        <img src="./assets/imgs/original_1628718691_los-simpson---star_-_3_e73a2761.png" alt="">
-                        <span>Resposta</span>
-                    </div>
-                    <div class="answer">
-                        <img src="./assets/imgs/original_1628718691_los-simpson---star_-_3_e73a2761.png" alt="">
-                        <span>Resposta</span>
-                    </div>
-                    <div class="answer">
-                        <img src="./assets/imgs/original_1628718691_los-simpson---star_-_3_e73a2761.png" alt="">
-                        <span>Resposta</span>
-                    </div>
-                    <div class="answer">
-                        <img src="./assets/imgs/original_1628718691_los-simpson---star_-_3_e73a2761.png" alt="">
-                        <span>Resposta</span>
-                    </div>
-                </div>
-            </div>
-            <div class="quizz-result">
-                <div class="result-title">
-                    <span>Resultado</span>
-                </div>
-                <div class="result">
-                    <img src="./assets/imgs/original_1628718691_los-simpson---star_-_3_e73a2761.png" alt="">
-                    <span>Parabéns Potterhead! Bem-vindx a Hogwarts, aproveite o loop infinito de comida e clique no
-                        botão abaixo para usar o vira-tempo e reiniciar este teste.</span>
-                </div>
-            </div>
         </div>
-        <button class="restart-button">
-            Reiniciar Quizz
-        </button>
-        <button class="home-button">
-            Voltar pra home
-        </button>
+        <div class="quizz-result hide">
+        </div>
+        <div class="final hide">
+            <button class="restart-button" onclick="restartQuizz()">
+                Reiniciar Quizz
+            </button>
+            <button class="home-button" onclick="goHome()">
+                Voltar pra home
+            </button>
+        </div>
     </div>
     <!-- FIM DA PAGINA PARA RESPONDER O QUIZZ-->
 
