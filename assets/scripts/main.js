@@ -11,6 +11,12 @@ let form = {
     levels: []
 }
 
+let gameTitle = document.querySelector('.creation--title');
+let gameImage = document.querySelector('.creation--img');
+let gameQuestionNums = document.querySelector('.creation--qnum');
+let gameLevelNums = document.querySelector('.creation--lvls');
+let passCheck = [];
+
 //MAIN
 
 getQuizz();
@@ -163,15 +169,11 @@ function creationPage() {
 }
 
 function validateInput() {
-    const gameTitle = document.querySelector('.creation--title');
-    const gameImage = document.querySelector('.creation--img');
-    const gameQuestionNums = document.querySelector('.creation--qnum');
-    const gameLevelNums = document.querySelector('.creation--lvls');
-    const passCheck = [];
+    
     if (gameTitle.value.length < 20 || gameTitle.value.length > 66) {
         gameTitle.parentElement.classList.add('validation-error');
     } else {
-        passCheck.push('1');
+        passCheck.push(gameTitle.value);
         if (gameTitle.parentElement.classList.contains('validation-error')) {
             gameTitle.parentElement.classList.remove('validation-error');
         }
@@ -179,7 +181,7 @@ function validateInput() {
     if (!gameImage.value.includes('https://')) {
         gameImage.parentElement.classList.add('validation-error');
     } else {
-        passCheck.push('2');
+        passCheck.push(gameImage.value);
         if (gameImage.parentElement.classList.contains('validation-error')) {
             gameImage.parentElement.classList.remove('validation-error');
         }
@@ -187,7 +189,7 @@ function validateInput() {
     if (gameQuestionNums.value < 3) {
         gameQuestionNums.parentElement.classList.add('validation-error');
     } else {
-        passCheck.push('3');
+        passCheck.push(gameQuestionNums.value);
         if (gameQuestionNums.parentElement.classList.contains('validation-error')) {
             gameQuestionNums.parentElement.classList.remove('validation-error');
         }
@@ -195,80 +197,204 @@ function validateInput() {
     if (gameLevelNums.value < 2) {
         gameLevelNums.parentElement.classList.add('validation-error');
     } else {
-        passCheck.push('4');
+        passCheck.push(gameLevelNums.value);
         if (gameLevelNums.parentElement.classList.contains('validation-error')) {
             gameLevelNums.parentElement.classList.remove('validation-error');
         }
     }
-    inputChecks(passCheck);
+    inputChecks();
 }
 
-function inputChecks(passCheck) {
+function inputChecks() {
     if (passCheck.length === 4) {
         //execute command to show next step;
-        createQuizQuestions(passCheck);
+        createQuizQuestions();
     }
 }
 
-function createQuizQuestions(passCheck) {
-    document.querySelector('.creation>.first').classList.add('hide');
-    const pageCreation = document.querySelector('.creation>.second');
+function createQuizQuestions() {
+    document.querySelector('.creation .first').classList.add('hide');
+    const pageCreation = document.querySelector('.creation .second');
     pageCreation.classList.remove('hide');
+    
 
     pageCreation.innerHTML += `
-    <div class='create-quiz-questions'>
-      <h1>Crie suas perguntas</h1>
-      <ul></ul>
-    </div>
+      <div class="create-quiz-questions">
+        <p>Crie suas perguntas</p>
+        <div></div>
+        <button onclick="checkQuestions();">Prosseguir para criar niveis</button>
+      </div>
+    `;
+    showQuestions();
+}
+
+function showQuestions() {
+  const formPosition = document.querySelector('.create-quiz-questions>div');
+
+  for (let i = 0; i < Number(passCheck[2]); i++) {
+    formPosition.innerHTML += `
+      <form class="question-${i+1}">
+        <p>Pergunta ${i+1}</p>
+        <div>
+          <input class="question-title" placeholder="Texto da pergunta" />
+          <input class="question-color" placeholder="Cor de fundo da pergunta" />
+        </div>
+      </form>
     `;
 
-    for (let i = 0; i < 3; i++) {
-        const list = document.querySelector('.create-quiz-questions>ul');
-
-        list.innerHTML += `
-          <li>
-            <p>Pergunta ${i + 1}</p>
-            <form class='questions-form-${i + 1}'>
-            <input class='question-title' value='xxxx' required/>
-              <input class='color-title' required/>
-              <p>Resposta Correta</p>
-              <input class='correct-answer' required/>
-              <input class='correct-img-answer' required type='url'/>
-              <p>Resposta incorretas</p>
-              <input class='wrong-answer1' required/>
-              <input class='wrong-img-answer1' required type='url'/>
-              <br>
-              <input class='wrong-answer2' />
-              <input class='wrong-img-answer2' type='url' />
-              <br>
-              <input class='wrong-answer3' />
-              <input class='wrong-img-answer3' type='url' />
-            </form>
-          </li>
+    for (let j = 0; j < 4; j++) {
+      let answerPosition = document.querySelector(`.question-${i+1}`);
+      if(j == 0) {
+        answerPosition.innerHTML += `
+          <p>Resposta correta</p>
+          <div>
+            <input class="question-answer-${j+1}" required placeholder="Resposta Correta" />
+            <input class="question-url-${j+1}" required placeholder="URL da imagem" />
+          </div>
         `;
-
-        const questionTitle = document.querySelector(`.questions-form-${i + 1}>.question-title`).value;
-        const colorTitle = document.querySelector(`.questions-form-${i + 1}>.color-title`).value;
-        const correctAnswer = document.querySelector(`.questions-form-${i + 1}>.correct-answer`).value;
-        const correctImg = document.querySelector(`.questions-form-${i + 1}>.correct-img-answer`).value;
-        const wrongAnswer1 = document.querySelector(`.questions-form-${i + 1}>.wrong-answer1`).value;
-        const wrongImg1 = document.querySelector(`.questions-form-${i + 1}>.wrong-img-answer1`).value;
-        const wrongAnswer2 = document.querySelector(`.questions-form-${i + 1}>.wrong-answer2`).value;
-        const wrongImg2 = document.querySelector(`.questions-form-${i + 1}>.wrong-img-answer2`).value;
-        const wrongAnswer3 = document.querySelector(`.questions-form-${i + 1}>.wrong-answer3`).value;
-        const wrongImg3 = document.querySelector(`.questions-form-${i + 1}>.wrong-img-answer3`).value;
-
-
+      }
+      else if (j == 1) {
+        answerPosition.innerHTML += `
+        <p>Respostas incorreta</p>
+          <div>
+            <input required class="question-answer-${j+1}" placeholder="Resposta Incorreta" />
+            <input required class="question-url-${j+1}" placeholder="URL da imagem" />
+          </div>
+        `;
+      }
+      else {
+        answerPosition.innerHTML += `
+          <div>
+            <input class="question-answer-${j+1}" placeholder="Resposta Incorreta" />
+            <input class="question-url-${j+1}" placeholder="URL da imagem" />
+          </div>
+        `;
+      }
     }
+  }
+}
 
-
-
-    pageCreation.innerHTML += `
-      <button onclick="checkQuestions()">Prosseguir para criar niveis</button>
-    `;
-
+function checkColor(string){
+  let ref = ['a', 'b', 'c', 'd', 'e', 'f', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+  if(string[0] === '#' && string.length < 8){
+    string = string.substring(1).toLowerCase();
+      for(let i=0; i<string.length; i++){
+        if(!ref.includes(string.charAt(i))){
+          return false
+        }
+      }
+      return true
+  } 
+  else{
+      return false
+  }
 }
 
 function checkQuestions() {
+  let counterQuestionItens = {
+    length: 0,
+    color: 0,
+    answerAmount: 0,
+    isAnswerEmpty: 0,
+    isUrl: 0,
+    isTrue: 0
+  };
+
+  for (let i = 0; i < Number(passCheck[2]); i++) {
+    let questionObject = {
+      title: '',
+      color: '',
+      answers: []
+    };
+
+    questionObject.title = document.querySelector(`.question-${i+1} .question-title`).value;
+    questionObject.color = document.querySelector(`.question-${i+1} .question-color`).value;
+
+    for (let j = 0; j < 4; j++) {
+      let answerObject = {
+        text: '',
+        image: '',
+        isCorrectAnswer: ''
+      };
+
+      answerObject.text = document.querySelector(`.question-${i+1} .question-answer-${j+1}`).value;
+      answerObject.image = document.querySelector(`.question-${i+1} .question-url-${j+1}`).value;
+
+      if(j == 1) {
+        answerObject.isCorrectAnswer = true;
+      }
+      else {
+        answerObject.isCorrectAnswer = false;
+      }
+
+      if(answerObject.image) {
+        questionObject.answers.push(answerObject);
+      }
+    }
+    form.questions.push(questionObject);
+  }
+
+  // percorrer form.questions e verificar as perguntas
+  form.questions.forEach(question => {
+    let counter = 0;
+    if(question.title.length < 20 && counterQuestionItens.length === 0) {
+      alert('O titulo das questoes devem ter pelo menos 20 caracteres');
+      counterQuestionItens.length++;
+      form.questions = [];
+    }
+    if(checkColor(question.color) == false && counterQuestionItens.color === 0) {
+      alert('A cor de fundo das questoes devem ser passada em formato hexadecimal! ex: #32bf7a');
+      counterQuestionItens.color++;
+      form.questions = [];
+    }
+    if(question.answers.length < 2 && counterQuestionItens.answerAmount === 0) {
+      alert('As questoes devem conter ao menos duas respostas');
+      counterQuestionItens.answerAmount++;
+      form.questions = [];
+    }
+
+    // percorrer question.answer e verificar as respostas
+    question.answers.forEach(answer => {
+      if((answer.text == '') && counterQuestionItens.isAnswerEmpty === 0) {
+        counterQuestionItens.isAnswerEmpty++;
+        form.questions = [];
+      }
+      if ((!answer.image.includes('https://') || answer.image == undefined) && counterQuestionItens.isUrl == 0) {
+        alert('A imagem das respostas devem ter uma url valida');
+        counterQuestionItens.isUrl++;
+        form.questions = [];
+      }
+      if (answer.isCorrectAnswer === true) {
+          counter++;
+      }
+    })
+    if ((counter === 0) && counterQuestionItens.isTrue === 0) {
+      alert("As questões devem conter ao menos uma respota correta");
+      counterQuestionItens.isTrue++;
+      form.questions = [];
+    }
+  })
+
+  if (form.questions.length !== 0) {
+    createQuizLevels();
+  }
+}
+
+function createQuizLevels() {
+  document.querySelector('.creation>.second').classList.add('hide');
+  const pageCreation = document.querySelector('.creation>.third');
+  pageCreation.classList.remove('hide');
+  
+  pageCreation.innerHTML += `
+    <div class="create-quiz-levels">
+      <h1>Agora, decida os niveis!</h1>
+      <div></div>
+      <button onclick="checkLevels()">Finalizar</button>
+    </div>
+  `;
+  showLevels();
+}
+
+function showLevels() {
 
 }
