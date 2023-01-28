@@ -214,6 +214,7 @@ function validateInput() {
 function inputChecks(passCheck) {
     if (passCheck.length === 4) {
         //execute command to show next step;
+        createQuizQuestions(passCheck);
     }
 }
 
