@@ -105,9 +105,20 @@ function answerSelection(item, index) {
             smoothMove(answerRefPos);
         }, 2000);
         if (questionsRef === numQuestions) {
-            setTimeout(() => {
-                calculateResults(points, numQuestions);
-            }, 2000);
+            let score = Math.floor((points / numQuestions) * 100);
+            console.log(levelsRef);
+            for (let i = (levelsRef.length - 1); i >= 0; i--) {
+                if (score >= levelsRef[i].minValue) {
+                    document.querySelector('.quizz-result').innerHTML = `
+                <div class="result-title">
+                    <span>${score}% de acerto: ${levelsRef[i].title}</span>
+                </div>
+                <div class="result">
+                    <img src=${levelsRef[i].image} alt="">
+                    <span>${levelsRef[i].text}</span>
+                </div>`;
+                }
+            }
         }
     }
 }
@@ -116,31 +127,12 @@ function smoothMove(lastId) {
     console.log(lastId);
     console.log(`data${Number(lastId) + 1}`)
     if (document.getElementById(`data${Number(lastId) + 1}`) === null) {
+        document.querySelector('.quizz-result').classList.remove('hide');
+        document.querySelector('.final').classList.remove('hide');
+        document.querySelector('.quizz-result').scrollIntoView({ behavior: 'smooth', block: "center", });
         return;
     }
     document.getElementById(`data${Number(lastId) + 1}`).parentElement.scrollIntoView({ behavior: 'smooth', block: "center", })
-}
-
-function calculateResults(points, numQuestions) {
-    document.querySelector('.quizz-result').classList.remove('hide');
-    document.querySelector('.final').classList.remove('hide');
-    let score = Math.floor((points / numQuestions) * 100);
-    console.log(levelsRef);
-    for (let i = (levelsRef.length - 1); i >= 0; i--) {
-        if (score >= levelsRef[i].minValue) {
-            document.querySelector('.quizz-result').innerHTML = `
-                <div class="result-title">
-                    <span>${score}% de acerto: ${levelsRef[i].title}</span>
-                </div>
-                <div class="result">
-                    <img src=${levelsRef[i].image} alt="">
-                    <span>${levelsRef[i].text}</span>
-                </div>
-            `;
-            document.querySelector('.quizz-result').scrollIntoView({ behavior: 'smooth', block: "center", });
-            return;
-        }
-    }
 }
 
 function restartQuizz() {
