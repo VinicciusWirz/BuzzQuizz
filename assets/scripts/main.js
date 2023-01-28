@@ -233,9 +233,10 @@ function showQuestions() {
 
   for (let i = 0; i < Number(passCheck[2]); i++) {
     formPosition.innerHTML += `
-      <form class="question-${i+1}">
+      <form class="question-form question-${i+1} small-size">
         <p>Pergunta ${i+1}</p>
         <div>
+          <ion-icon name="create-outline" onclick="editQuestions(this, 'question-${i+1}');"></ion-icon>
           <input class="question-title" placeholder="Texto da pergunta" />
           <input class="question-color" placeholder="Cor de fundo da pergunta" />
         </div>
@@ -320,7 +321,7 @@ function checkQuestions() {
       answerObject.text = document.querySelector(`.question-${i+1} .question-answer-${j+1}`).value;
       answerObject.image = document.querySelector(`.question-${i+1} .question-url-${j+1}`).value;
 
-      if(j == 1) {
+      if(j == 0) {
         answerObject.isCorrectAnswer = true;
       }
       else {
@@ -359,7 +360,7 @@ function checkQuestions() {
         counterQuestionItens.isAnswerEmpty++;
         form.questions = [];
       }
-      if ((!answer.image.includes('https://') || answer.image == undefined) && counterQuestionItens.isUrl == 0) {
+      if (!(answer.image.includes('https://') || answer.image == undefined) && counterQuestionItens.isUrl == 0) {
         alert('A imagem das respostas devem ter uma url valida');
         counterQuestionItens.isUrl++;
         form.questions = [];
@@ -381,20 +382,144 @@ function checkQuestions() {
 }
 
 function createQuizLevels() {
-  document.querySelector('.creation>.second').classList.add('hide');
-  const pageCreation = document.querySelector('.creation>.third');
+  document.querySelector('.creation .second').classList.add('hide');
+  const pageCreation = document.querySelector('.creation .third');
   pageCreation.classList.remove('hide');
   
   pageCreation.innerHTML += `
     <div class="create-quiz-levels">
       <h1>Agora, decida os niveis!</h1>
       <div></div>
-      <button onclick="checkLevels()">Finalizar</button>
+      <button onclick="checkLevels()">Finalizar Quiz</button>
     </div>
   `;
   showLevels();
 }
 
 function showLevels() {
+  const formPosition = document.querySelector('.create-quiz-levels div');
+  for(let i = 0; i < Number(passCheck[3]); i++) {
+    formPosition.innerHTML += `
+      <form class="levels-form level-${i+1} small-size">
+        <p>Nivel ${i+1}</p>
+        <ion-icon name="create-outline" onclick="editLevels(this, 'level-${i+1}');"></ion-icon>
+        <div>
+          <input placeholder="Titulo do nivel"></input>
+          <input placeholder="% de acerto minima"></input>
+          <input placeholder="url da imagem"></input>
+          <textarea placeholder="Descrição do nivel"></textarea>
+        </div>
+      </form>
+    `;
+  }
+}
 
+function checkLevels() {
+  let verification = {
+    length: 0,
+    minValue: 0,
+    validUrl: 0,
+    minCharacter: 0,
+    include0: 0
+  };
+
+  for (let i = 0; i < Number(passCheck[3]); i++) {
+    let levelObject = {
+      title: null,
+      image: null,
+      text: null,
+      minValue: null
+    };
+
+    levelObject.title = document.querySelector(`.level-${i+1} input:first-of-type`).value;
+    levelObject.minValue = document.querySelector(`.level-${i+1} input:nth-of-type(2)`).value;
+    levelObject.image = document.querySelector(`.level-${i+1} input:nth-of-type(3)`).value;
+    levelObject.text = document.querySelector(`.level-${i+1} textarea`).value;
+
+    form.levels.push(levelObject);
+  }
+
+  form.levels.forEach(level => {
+    if (level.title.length < 10 && verification.length == 0) {
+      verification.length++;
+      form.levels = [];
+      alert('O titulo do nivel deve conter pelo menos 10 caracteres');
+    }
+    if ((level.minValue < 0) || (level.minValue > 100) || (level.minValue === '') && verification.minValue === 0) {
+      verification.minValue++;
+      form.levels = [];
+      alert('A porcentagem de acerto minima deve ser um numero entre 0 a 100');
+    }
+    if (!(level.image.includes('https://')) && verification.validUrl === 0) {
+      verification.validUrl++;
+      form.levels = [];
+      alert('Preencha uma URL valida');
+    }
+    if (level.text.length < 30 && verification.minCharacter === 0) {
+      verification.minCharacter++;
+      form.levels = [];
+      alert('A descrição do nivel deve ter pelo menos 30 caracteres');
+    }
+    if (!level.minValue.includes(0) && verification.include0 === 0) {
+      verification.include0++;
+      form.levels = [];
+      alert('Pelo menos um dos niveis deve conter uma % de no minimo igual a 0');
+    }
+  })
+  if (form.levels.length !== 0) {
+    finishQuizCreation();
+  }
+}
+
+function editQuestions(question, select) {
+  document.querySelector('.create-quiz-questions').scrollIntoView(true);
+  let questionsArray = [];
+  const parent = question.parentNode.parentNode;
+  parent.querySelector('p:first-of-type').style.top = '10px';
+  parent.classList.remove('small-size');
+  parent.querySelector('ion-icon').style.overflow = 'hidden';
+
+  for (let i = 0; i < Number(passCheck[2]); i++) {
+    questionsArray.push(`question-${i+1}`);
+  }
+
+  let index = questionsArray.indexOf(select);
+  questionsArray.splice(index, 1);
+
+  questionsArray.forEach(element => {
+    const elementNode = document.querySelector(`.${element}`);
+    elementNode.querySelector('p:first-of-type').style.top = '4px';
+    elementNode.classList.add('small-size');
+    elementNode.querySelector('ion-icon').style.overflow = 'visible';
+  })
+}
+
+function editLevels(level, select) {
+  document.querySelector('.create-quiz-levels').scrollIntoView(true);
+  let levelArray = [];
+  const parent = level.parentNode;
+  parent.classList.remove('small-size');
+  parent.querySelector('ion-icon').style.overflow = 'hidden';
+
+  for (let i = 0; i < Number(passCheck[3]); i++) {
+    levelArray.push(`level-${i+1}`);
+    console.log(levelArray);
+  }
+
+  let index = levelArray.indexOf(select);
+  levelArray.splice(index, 1);
+  console.log(levelArray);
+
+  levelArray.forEach(element => {
+    const elementNode = document.querySelector(`${element}`);
+    elementNode.classList.add('small-size');
+    elementNode.querySelector('ion-icon').style.overflow = 'visible';
+  })
+}
+
+function finishQuizCreation() {
+  // enviar form pra função que salva no localStorage
+
+
+  // criar tela final
 }
