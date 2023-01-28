@@ -127,6 +127,7 @@ button,
 .user-nav.has-data>ul {
     display: flex;
 }
+
 .user-nav.has-data>.title {
     display: flex;
     align-items: center;
@@ -393,6 +394,8 @@ input::placeholder {
     font-size: 23px;
     line-height: 46px;
     color: #FFFFFF;
+    text-align: center;
+    word-break: break-word;
 
 }
 
@@ -558,8 +561,8 @@ input::-webkit-inner-spin-button {
     }
 
     .user-nav>.title {
-    justify-content: space-between;
-    width: 100%;
+        justify-content: space-between;
+        width: 100%;
     }
 
     .user-nav.has-data>ul {
@@ -600,7 +603,7 @@ input::-webkit-inner-spin-button {
     }
 
     .creation>div>button {
-        width: 324px ;
+        width: 324px;
         font-style: normal;
         font-weight: 400;
         font-size: 18px;
@@ -608,18 +611,101 @@ input::-webkit-inner-spin-button {
         text-align: center;
         color: #FFF5F4;
     }
+
+    .banner {
+        width: 100%;
+        height: 38vw;
+        margin-bottom: 24px;
+    }
+
+    .banner span {
+        font-size: 5vw;
+    }
+
+    .question-box {
+        width: 375px;
+        padding: 18px;
+        margin-bottom: 28px;
+    }
+
+    .question {
+        width: 340px;
+        height: 89px;
+    }
+
+    .question span,
+    .result-title span {
+        max-width: 308px;
+        font-size: 19px;
+        line-height: 22px;
+        word-break: break-word;
+    }
+
+    .answer-box {
+        gap: 12px;
+        margin-bottom: 5px;
+    }
+
+    .answer img {
+        width: 163px;
+        height: 113px;
+    }
+
+    .answer span {
+        width: 163px;
+        font-size: 13px;
+        line-height: 15px;
+    }
+
+    .quizz-result {
+        width: 375px;
+    }
+
+    .result-title {
+        width: 340px;
+    }
+
+    .result {
+        flex-direction: column;
+    }
+
+    .result img {
+        width: 340px;
+        height: 255px;
+    }
+
+    .result span {
+        width: 340px;
+        font-size: 17px;
+        line-height: 20px;
+    }
+
+    .restart-button,
+    .home-button {
+        width: 220px;
+        height: 44px;
+        font-size: 18px;
+        line-height: 21px;
+    }
+
+    .restart-button {
+        margin-bottom: 10px;
+    }
 }
 
 @media (max-width: 375px) {
 
     /* Creation quizz */
-    .creation>div>form {
+    .creation>div>form,
+    .question-box,
+    .quizz-result {
         width: 100vw;
     }
 
 }
 
 @media (max-width: 340px) {
+
     main nav,
     .user-nav,
     .quizz>ul,
@@ -634,4 +720,5 @@ input::-webkit-inner-spin-button {
     .creation>div>button {
         width: 100%;
     }
+
 }
