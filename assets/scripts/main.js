@@ -402,8 +402,8 @@ function showLevels() {
     formPosition.innerHTML += `
       <form class="levels-form level-${i+1} small-size">
         <p>Nivel ${i+1}</p>
-        <ion-icon name="create-outline" onclick="editLevels(this, 'level-${i+1}');"></ion-icon>
         <div>
+          <ion-icon name="create-outline" onclick="editLevels(this, 'level-${i+1}');"></ion-icon>
           <input placeholder="Titulo do nivel"></input>
           <input placeholder="% de acerto minima"></input>
           <input placeholder="url da imagem"></input>
@@ -497,7 +497,7 @@ function editQuestions(question, select) {
 function editLevels(level, select) {
   document.querySelector('.create-quiz-levels').scrollIntoView(true);
   let levelArray = [];
-  const parent = level.parentNode;
+  const parent = level.parentNode.parentNode;
   parent.classList.remove('small-size');
   parent.querySelector('ion-icon').style.overflow = 'hidden';
 
@@ -508,10 +508,9 @@ function editLevels(level, select) {
 
   let index = levelArray.indexOf(select);
   levelArray.splice(index, 1);
-  console.log(levelArray);
 
   levelArray.forEach(element => {
-    const elementNode = document.querySelector(`${element}`);
+    const elementNode = document.querySelector(`.${element}`);
     elementNode.classList.add('small-size');
     elementNode.querySelector('ion-icon').style.overflow = 'visible';
   })
