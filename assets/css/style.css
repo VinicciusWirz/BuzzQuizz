@@ -557,9 +557,12 @@ input::placeholder {
 }
 
 .creation .second h1 {
-    margin-top: 40px;
+    margin-top: 63px;
+    margin-bottom: 6px;
+    font-style: normal;
     font-weight: 700;
-    font-size: 20px;
+    font-size: 23px;
+    line-height: 27px;
     text-align: center;
     color: #000;
 }
@@ -567,8 +570,10 @@ input::placeholder {
 .creation .second p {
     margin-top: 30px;
     margin-bottom: 15px;
-    font-size: 20px;
+    font-style: normal;
     font-weight: 700;
+    font-size: 20px;
+    line-height: 27px;
     color: #000;
 }
 
@@ -582,6 +587,8 @@ input::placeholder {
     align-items: center;
     background-color: #fff;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+    max-height: 829px;
+    transition: max-height 0.5s;
 }
 
 .creation .second input {
@@ -596,14 +603,16 @@ input::placeholder {
 }
 
 .creation .second button {
-    width: 325px;
-    height: 55px;
+    width: 350px;
+    height: 54px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 25px;
     background-color: #ec362d;
     border: none;
     border-radius: 15px;
-    columns: #fff;
-    font-size: 18px;
-    color: #fff;
+    color: #FFF5F4;
 }
 
 .creation .second button:hover {
@@ -628,8 +637,14 @@ input::placeholder {
     margin-bottom: 60px;
 }
 
+.creation .second form.small-size,
+.creation .third form.small-size {
+    max-height: 74px;
+    overflow: hidden;
+}
+
 .small-size {
-    height: 74px;
+    max-height: 74px;
     overflow: hidden;
 }
 
@@ -652,7 +667,7 @@ input::placeholder {
 }
 
 .question-form p:first-of-type {
-    top: 4px;
+    top: 0px;
 }
 
 .question-form p:nth-of-type(2) {
@@ -715,8 +730,10 @@ input::placeholder {
 
 .creation .third h1 {
     margin-top: 40px;
+    font-style: normal;
     font-weight: 700;
-    font-size: 20px;
+    font-size: 23px;
+    line-height: 27px;
     text-align: center;
     color: #000;
 }
@@ -739,6 +756,8 @@ input::placeholder {
     align-items: center;
     background-color: #fff;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+    max-height: 631px;
+    transition: max-height 0.5s;
 }
 
 .creation .third div {
@@ -759,11 +778,13 @@ input::placeholder {
 .creation .third button {
     width: 325px;
     height: 55px;
+    font-size: 18px;
     background-color: #ec362d;
     border: none;
     border-radius: 15px;
-    columns: #fff;
-    font-size: 18px;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 25px;
     color: #fff;
 }
 
@@ -1031,8 +1052,17 @@ input::-webkit-inner-spin-button {
     }
 
     /* Creation quizz*/
-    .creation>div>p {
-        margin-top: 37px;
+    .creation>div>p,
+    .creation .second h1,
+    .creation .third h1,
+    .creation-result article {
+        margin-top: 38px;
+    }
+
+    .creation>div>p,
+    .creation .second h1,
+    .creation .third h1 {
+        font-size: 20px
     }
 
     .creation>div>form,
@@ -1045,6 +1075,13 @@ input::-webkit-inner-spin-button {
         width: 100%;
         padding-left: 20px;
         padding-right: 20px;
+    }
+
+    .creation .second button,
+    .creation .third button {
+        width: 325px;
+        height: 55px;
+        font-size: 18px;
     }
 
     .creation>div>form>div>input {

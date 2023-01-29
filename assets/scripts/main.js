@@ -224,7 +224,7 @@ function createQuizQuestions() {
 
   pageCreation.innerHTML += `
       <div class="create-quiz-questions">
-        <p>Crie suas perguntas</p>
+        <h1>Crie suas perguntas</h1>
         <div></div>
         <button onclick="checkQuestions();">Prosseguir para criar niveis</button>
       </div>
@@ -287,7 +287,7 @@ function showQuestions() {
 
 function checkColor(string) {
   let ref = ['a', 'b', 'c', 'd', 'e', 'f', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-  if (string[0] === '#' && string.length < 8) {
+  if (string[0] === '#' && string.length === 7) {
     string = string.substring(1).toLowerCase();
     for (let i = 0; i < string.length; i++) {
       if (!ref.includes(string.charAt(i))) {
@@ -499,6 +499,7 @@ function checkLevels() {
 
 function editQuestions(question, select) {
   document.querySelector('.create-quiz-questions').scrollIntoView(true);
+  question.parentElement.parentElement.scrollIntoView({block: "center"});
   let questionsArray = [];
   const parent = question.parentNode.parentNode;
   parent.querySelector('p:first-of-type').style.top = '10px';
@@ -544,8 +545,6 @@ function editLevels(level, select) {
 function finishQuizCreation() {
   // enviar form pra função que salva no localStorage
   document.querySelector('.creation-result').classList.remove('hide');
-  //   document.querySelector('.creation-result').innerHTMl = `<img src="./assets/imgs/Interwind-1s-200px.gif" alt="" class="loading">`;
-  //   axios.post()
   postQuestion();
   // criar tela final
 }
