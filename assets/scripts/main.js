@@ -207,6 +207,8 @@ function inputChecks(passCheck) {
     if (passCheck.length === 4) {
         //execute command to show next step;
         createQuizQuestions(passCheck);
+    } else {
+        alert('Preencha os campos corretamente');
     }
 }
 
