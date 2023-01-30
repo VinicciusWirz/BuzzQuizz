@@ -124,6 +124,7 @@ function answerSelection(item, index) {
                     <img src=${levelsRef[i].image} alt="" onerror="this.src='./assets/imgs/error404.png'">
                     <span>${levelsRef[i].text}</span>
                 </div>`;
+                return;
         }
       }
     }
